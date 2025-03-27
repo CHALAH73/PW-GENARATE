@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('https://i.ibb.co/0Rb2bXSF/7846.jpg') no-repeat center center/cover;
+            color: white;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        .header {
+            position: absolute;
+            top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff00; /* Green Color */
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: red; /* Red Color for Title */
+        }
+
+        input[type="text"] {
+            width: 320px;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .generate-btn {
+            background-color: #ff9900;
+            color: black;
+        }
+
+        .generate-btn:hover {
+            background-color: #ff6600;
+        }
+
+        .copy-btn {
+            background-color: #00ff7f;
+            color: black;
+        }
+
+        .copy-btn:hover {
+            background-color: #00cc66;
+        }
+
+        #copyMessage {
+            margin-top: 10px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #00ff7f;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">ＤＴＺᵀᴹ | C H A L A H</div>
+
+    <div class="container">
+        <h1>𝒔𝒕𝒓𝒐𝒏𝒈 𝒑𝒘 𝒈𝒆𝒏𝒂𝒓𝒂𝒕𝒆★</h1>
+        <input type="text" id="password" placeholder="Your secure password" readonly>
+        <div class="buttons">
+            <button class="generate-btn" onclick="generatePassword()">Generate</button>
+            <button class="copy-btn" onclick="copyPassword()">Copy</button>
+        </div>
+        <p id="copyMessage">COPY SUCCESS ✅</p>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const length = 20;
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const symbols = "¡¿@#$%^&*()_+~`|}{[]:;?><,./-=©|¢£€¥₹";
+            const numbers = "0123456789";
+            
+            let password = "";
+
+            for (let i = 0; i < length; i++) {
+                const randomPick = Math.random();
+
+                if (randomPick < 0.4) {
+                    password += charset[Math.floor(Math.random() * charset.length)];
+                } else if (randomPick < 0.7) {
+                    password += symbols[Math.floor(Math.random() * symbols.length)];
+                } else {
+                    password += numbers[Math.floor(Math.random() * numbers.length)];
+                }
+            }
+
+            document.getElementById("password").value = password;
+        }
+
+        function copyPassword() {
+            const passwordField = document.getElementById("password");
+            passwordField.select();
+            document.execCommand("copy");
+
+            const copyMessage = document.getElementById("copyMessage");
+            copyMessage.style.opacity = 1;
+
+            setTimeout(() => {
+                copyMessage.style.opacity = 0;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
